@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+
+  "Description": "simple s3 bucket template",
+
+  "Parameters": {
+    "BucketName": {
+      "Type": "String",
+      "Description": "Enter bucket name."
+    }
+  },
+
+  "Resources": {
+    "SimpleBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": { "Ref": "BucketName" },
+        "AccessControl": "PublicRead"
+      },
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain"
+    }
+  },
+
+  "Outputs": {
+    "BucketArn": {
+      "Value": { "Fn::GetAtt": ["SimpleBucket", "Arn"] },
+      "Description": "Arn for S3"
+    }
+  }
+}
